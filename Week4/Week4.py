@@ -86,24 +86,17 @@ class HospitalPlacementEnv(HospitalPlacement):
     
     @override
     def utility(self, state: State) -> Numeric:
-        obj = 0
+
         houses: dict[House, Location] = state["houses"]
         hospitals: dict[Hospital, Location] = state["hospitals"]
 
+        max_dist = 0
         for house in houses:
-            dist_to_nearest = infinity
-            for hospital in hospitals:
-                house_loc = houses[house]
-                hospital_loc = hospitals[hospital]
-
-                dist = manhattan(house_loc, hospital_loc)
-
-                if dist < dist_to_nearest:
-                    dist_to_nearest = dist
-
-            obj += dist_to_nearest
-
-        return -obj
+            house_loc= houses[house]
+            nearest = min(manhattan(house_loc, hospitals[h]) for h in hospitals)
+            if nearest > max_dist:
+                max_dist = nearest
+        return -max_dist
 
     
 class HillClimbOptimiser(HospitalOptimiser):
