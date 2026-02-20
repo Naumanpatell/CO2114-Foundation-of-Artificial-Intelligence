@@ -3,7 +3,7 @@ import importlib.util
 import sys
 from pathlib import Path
 
-from co2114.search.graph import Agent, ShortestPathEnvironment
+from co2114_.search.graph import Agent, ShortestPathEnvironment
 
 
 # from template import AssignmentAgent01

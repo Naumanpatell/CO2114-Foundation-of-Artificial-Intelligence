@@ -1,7 +1,7 @@
 from typing import override
 import math
 
-from co2114.search.graph import (
+from co2114_.search.graph import (
         ShortestPathAgent, 
         Node,
         Numeric
